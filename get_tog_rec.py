@@ -2,8 +2,6 @@ import datetime as dt
 import json
 import os
 from datetime import timedelta
-
-import pandas as pd
 import requests
 
 
@@ -12,13 +10,13 @@ def getTogglCsvString(startdate, worker):
     toggl apiから詳細データを取得してCSV出力する。
     取得範囲は 実行日-7>= and <=実行日
     """
-    endDay = startdate+timedelta(days=6)
+    endDay = startdate + timedelta(days=6)
     headers = {'content-type': 'application/json'}
     params = {
         'user_agent': worker.user_agent,
         'workspace_id': worker.workspace_id,
-        'since':  startdate,
-        'until':  endDay,
+        'since': startdate,
+        'until': endDay,
     }
     auth = requests.auth.HTTPBasicAuth(worker.api_token, 'api_token')
 
